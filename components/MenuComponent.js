@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList} from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { DISHES } from "../shared/dishes";
-
-import Dishdetail from "./DishdetailComponent";
 
 class Menu extends Component {
   constructor(props) {

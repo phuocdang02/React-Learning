@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text } from "react-native";
+import { View, Text } from "react-native";
 import { Card, Image } from "react-native-elements";
+import { ScrollView } from "react-native-virtualized-view";
 
 /* Shared Folder */
 import { DISHES } from "../shared/dishes";
