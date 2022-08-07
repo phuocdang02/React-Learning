@@ -71,9 +71,6 @@ const mapStateToProps = (state) => {
 class About extends Component {
   constructor(props) {
     super(props);
-    /* this.state = {
-      leaders: LEADERS,
-    }; */
   }
 
   render() {

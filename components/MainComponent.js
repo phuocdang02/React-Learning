@@ -19,6 +19,7 @@ import Home from "./HomeComponent";
 /* redux */
 import { connect } from "react-redux";
 import { fetchLeaders } from "../redux/ActionCreators";
+
 const mapDispatchToProps = (dispatch) => ({
   fetchLeaders: () => dispatch(fetchLeaders()),
 });
@@ -137,7 +138,7 @@ function ContactNavigatorScreen() {
         name="Contact"
         component={Contact}
         options={({ navigation }) => ({
-          headerTitle: "About",
+          headerTitle: "Contact",
           headerLeft: () => (
             <Icon
               name="menu"
@@ -172,7 +173,7 @@ function CustomDrawerContent(props) {
         </View>
         <View style={{ flex: 2 }}>
           <Text style={{ color: "#fff", fontSize: 22, fontWeight: "bold" }}>
-            TDK & Friends
+            DangHp & Me
           </Text>
         </View>
       </View>
@@ -263,7 +264,6 @@ class Main extends Component {
     );
   }
   componentDidMount() {
-    // redux
     this.props.fetchLeaders();
   }
 }

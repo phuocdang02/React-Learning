@@ -46,17 +46,17 @@ class Home extends Component {
   }
   render() {
     const dish = this.state.dishes.filter((dish) => dish.featured === true)[0];
-    const promotions = this.state.dishes.filter(
-      (promotions) => promotions.featured === true
+    const promo = this.state.promotions.filter(
+      (promo) => promo.featured === true
     )[0];
-    const leaders = this.state.dishes.filter(
-      (leaders) => leaders.featured === true
+    const leader = this.state.leaders.filter(
+      (leader) => leader.featured === true
     )[0];
     return (
       <ScrollView>
         <RenderItem item={dish} />
-        <RenderItem item={promotions} />
-        <RenderItem item={leaders} />
+        <RenderItem item={promo} />
+        <RenderItem item={leader} />
       </ScrollView>
     );
   }
