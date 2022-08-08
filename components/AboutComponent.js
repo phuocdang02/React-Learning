@@ -74,7 +74,7 @@ class About extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <RenderHistory />
         <RenderLeadership leaders={this.props.leaders.leaders} />
       </ScrollView>
