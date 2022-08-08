@@ -16,15 +16,6 @@ import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import Home from "./HomeComponent";
 
-/* redux */
-import { connect } from "react-redux";
-import { fetchLeaders } from "../redux/ActionCreators";
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchLeaders: () => dispatch(fetchLeaders()),
-});
-
-/* HOME SCREEN */
 function HomeNavigatorScreen() {
   const HomeNavigator = createStackNavigator();
   return (
@@ -55,7 +46,6 @@ function HomeNavigatorScreen() {
   );
 }
 
-/* ABOUT SCREEN */
 function AboutNavigatorScreen() {
   const AboutNavigator = createStackNavigator();
   return (
@@ -86,7 +76,6 @@ function AboutNavigatorScreen() {
   );
 }
 
-/* MENU SCREEN */
 function MenuNavigatorScreen() {
   const MenuNavigator = createStackNavigator();
   return (
@@ -102,7 +91,7 @@ function MenuNavigatorScreen() {
         name="Menu"
         component={Menu}
         options={({ navigation }) => ({
-          headerTitle: "About",
+          headerTitle: "Menu",
           headerLeft: () => (
             <Icon
               name="menu"
@@ -122,7 +111,6 @@ function MenuNavigatorScreen() {
   );
 }
 
-/* CONTACT SCREEN */
 function ContactNavigatorScreen() {
   const ContactNavigator = createStackNavigator();
   return (
@@ -156,7 +144,6 @@ function ContactNavigatorScreen() {
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
-      {/* LOGO and custom drawer */}
       <View
         style={{
           backgroundColor: "#7cc",
@@ -183,15 +170,12 @@ function CustomDrawerContent(props) {
         icon={({ focused, size }) => (
           <Icon name="help" size={size} color={focused ? "#7cc" : "#ccc"} />
         )}
-        onPress={() =>
-          Linking.openURL("https://reactnavigation.org/docs/getting-started")
-        }
+        onPress={() => Linking.openURL("https://facebook.com/ha.phuocdang")}
       />
     </DrawerContentScrollView>
   );
 }
 
-/* MAIN SCREEN with Drawer Navigator */
 function MainNavigatorScreen() {
   const MainNavigator = createDrawerNavigator();
   return (
@@ -254,6 +238,14 @@ function MainNavigatorScreen() {
     </MainNavigator.Navigator>
   );
 }
+
+//redux
+import { connect } from "react-redux";
+import { fetchLeaders } from "../redux/ActionCreators";
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchLeaders: () => dispatch(fetchLeaders()),
+});
 
 class Main extends Component {
   render() {

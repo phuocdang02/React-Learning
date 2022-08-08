@@ -3,9 +3,8 @@ import { Text, FlatList } from "react-native";
 import { Card, ListItem, Avatar } from "react-native-elements";
 import { ScrollView } from "react-native-virtualized-view";
 
-/* import { LEADERS } from "../shared/leaders"; */
+//import { LEADERS } from "../shared/leaders";
 import { baseUrl } from "../shared/baseUrl";
-import { connect } from "react-redux";
 
 class RenderHistory extends Component {
   render() {
@@ -38,7 +37,7 @@ class RenderLeadership extends Component {
         <Card.Title>Corporate Leadership</Card.Title>
         <Card.Divider />
         <FlatList
-          data={this.props.item}
+          data={this.props.leaders}
           renderItem={({ item, index }) => this.renderLeaderItem(item, index)}
           keyExtractor={(item) => item.id.toString()}
         />
@@ -56,12 +55,12 @@ class RenderLeadership extends Component {
           </ListItem.Title>
           <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
         </ListItem.Content>
-        ``
       </ListItem>
     );
   }
 }
 
+import { connect } from "react-redux";
 const mapStateToProps = (state) => {
   return {
     leaders: state.leaders,

@@ -6,7 +6,6 @@ import { ScrollView } from "react-native-virtualized-view";
 import { COMMENTS } from "../shared/comments";
 import { DISHES } from "../shared/dishes";
 
-/* COMMENTS */
 class RenderComments extends Component {
   render() {
     const comments = this.props.comments;
@@ -35,7 +34,6 @@ class RenderComments extends Component {
   }
 }
 
-/* DISHES, FAVORITES */
 class RenderDish extends Component {
   render() {
     const dish = this.props.dish;
