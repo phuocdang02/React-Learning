@@ -4,9 +4,11 @@ import { Card, Image } from "react-native-elements";
 import { ScrollView } from "react-native-virtualized-view";
 
 /* Shared Folder */
-import { DISHES } from "../shared/dishes";
-import { PROMOTIONS } from "../shared/promotions";
-import { LEADERS } from "../shared/leaders";
+//import { DISHES } from "../shared/dishes";
+//import { PROMOTIONS } from "../shared/promotions";
+//import { LEADERS } from "../shared/leaders";
+
+import { baseUrl } from "../shared/baseUrl";
 
 class RenderItem extends Component {
   render() {
@@ -15,7 +17,7 @@ class RenderItem extends Component {
       return (
         <Card>
           <Image
-            source={require("./images/uthappizza.png")}
+            source={{ uri: baseUrl + item.image }}
             style={{
               width: "100%",
               height: 100,
@@ -35,6 +37,16 @@ class RenderItem extends Component {
   }
 }
 
+// redux
+import { connect } from "react-redux";
+const mapStateToProps = (state) => {
+  return {
+    dishes: state.dishes,
+    promotions: state.promotions,
+    leaders: state.leaders,
+  };
+};
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -45,11 +57,13 @@ class Home extends Component {
     };
   }
   render() {
-    const dish = this.state.dishes.filter((dish) => dish.featured === true)[0];
-    const promo = this.state.promotions.filter(
+    const dish = this.props.dishes.dishes.filter(
+      (dish) => dish.featured === true
+    )[0];
+    const promo = this.props.promotions.promotions.filter(
       (promo) => promo.featured === true
     )[0];
-    const leader = this.state.leaders.filter(
+    const leader = this.props.leaders.leaders.filter(
       (leader) => leader.featured === true
     )[0];
     return (
@@ -61,4 +75,4 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+export default connect(mapStateToProps)(Home);

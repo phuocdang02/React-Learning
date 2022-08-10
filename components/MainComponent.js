@@ -15,6 +15,7 @@ import Dishdetail from "./DishdetailComponent";
 import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import Home from "./HomeComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 function HomeNavigatorScreen() {
   const HomeNavigator = createStackNavigator();
@@ -154,7 +155,7 @@ function CustomDrawerContent(props) {
       >
         <View style={{ flex: 1 }}>
           <Image
-            source={require("./images/logo.png")}
+            source={{ uri: baseUrl + "images/logo.png" }}
             style={{ margin: 10, width: 80, height: 60 }}
           />
         </View>
@@ -239,12 +240,19 @@ function MainNavigatorScreen() {
   );
 }
 
-//redux
+// redux
 import { connect } from "react-redux";
-import { fetchLeaders } from "../redux/ActionCreators";
-
+import {
+  fetchLeaders,
+  fetchDishes,
+  fetchComments,
+  fetchPromos,
+} from "../redux/ActionCreators";
 const mapDispatchToProps = (dispatch) => ({
   fetchLeaders: () => dispatch(fetchLeaders()),
+  fetchDishes: () => dispatch(fetchDishes()),
+  fetchComments: () => dispatch(fetchComments()),
+  fetchPromos: () => dispatch(fetchPromos()),
 });
 
 class Main extends Component {
@@ -257,6 +265,9 @@ class Main extends Component {
   }
   componentDidMount() {
     this.props.fetchLeaders();
+    this.props.fetchDishes();
+    this.props.fetchComments();
+    this.props.fetchPromos();
   }
 }
 export default connect(null, mapDispatchToProps)(Main);
