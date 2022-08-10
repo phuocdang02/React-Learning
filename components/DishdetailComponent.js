@@ -5,7 +5,7 @@ import { ScrollView } from "react-native-virtualized-view";
 
 /* import { COMMENTS } from "../shared/comments";
 import { DISHES } from "../shared/dishes"; */
-import { baseUrl } from '../shared/baseUrl';
+import { baseUrl } from "../shared/baseUrl";
 
 class RenderComments extends Component {
   render() {
@@ -79,15 +79,17 @@ const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
     comments: state.comments,
+    favorites: state.favorites,
   };
 };
+import { postFavorite } from '../redux/ActionCreators';
+const mapDispatchToProps = (dispatch) => ({
+  postFavorite: (dishId) => dispatch(postFavorite(dishId))
+});
 
 class Dishdetail extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      favorites: [],
-    };
   }
   render() {
     const dishId = parseInt(this.props.route.params.dishId);
@@ -95,7 +97,7 @@ class Dishdetail extends Component {
     const comments = this.props.comments.comments.filter(
       (cmt) => cmt.dishId === dishId
     );
-    const favorite = this.state.favorites.some((el) => el === dishId);
+    const favorite = this.props.favorites.some((el) => el === dishId);
     return (
       <ScrollView>
         <RenderDish
@@ -108,7 +110,7 @@ class Dishdetail extends Component {
     );
   }
   markFavorite(dishId) {
-    this.setState({ favorites: this.state.favorites.concat(dishId) });
+    this.props.postFavorite(dishId);
   }
 }
 export default connect(mapStateToProps)(Dishdetail);
