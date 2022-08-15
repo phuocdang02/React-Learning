@@ -69,6 +69,23 @@ const addComments = (comments) => ({
   payload: comments,
 });
 
+export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+  var newcmt = {
+    dishId: dishId,
+    rating: rating,
+    author: author,
+    comment: comment,
+    date: new Date().toISOString(),
+  };
+  setTimeout(() => {
+    dispatch(addComment(newcmt));
+  }, 2000);
+};
+const addComment = (newcmt) => ({
+  type: ActionTypes.ADD_COMMENT,
+  payload: newcmt,
+});
+
 // promotions
 export const fetchPromos = () => (dispatch) => {
   dispatch(promosLoading());
@@ -95,7 +112,9 @@ const addPromos = (promos) => ({
 
 // favorites
 export const postFavorite = (dishId) => (dispatch) => {
-  dispatch(addFavorite(dishId));
+  setTimeout(() => {
+    dispatch(addFavorite(dishId));
+  }, 2000);
 };
 const addFavorite = (dishId) => ({
   type: ActionTypes.ADD_FAVORITE,

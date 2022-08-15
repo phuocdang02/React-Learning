@@ -1,21 +1,23 @@
 import React, { Component } from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList, View } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
-/* import { DISHES } from "../shared/dishes";*/
+import { Text } from "react-native";
+// import { DISHES } from "../shared/dishes";
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "./LoadingComponent";
-
-// redux
+import Dishdetail from "./DishdetailComponent";
 import { connect } from "react-redux";
 const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
   };
 };
-
 class Menu extends Component {
   constructor(props) {
     super(props);
+    /*this.state = {
+      dishes: DISHES
+    };*/
   }
   render() {
     if (this.props.dishes.isLoading) {

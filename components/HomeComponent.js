@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, ScrollView, Text } from "react-native";
 import { Card, Image } from "react-native-elements";
-import { ScrollView } from "react-native-virtualized-view";
-import Loading from "./LoadingComponent";
 
 /* Shared Folder */
-//import { DISHES } from "../shared/dishes";
-//import { PROMOTIONS } from "../shared/promotions";
-//import { LEADERS } from "../shared/leaders";
+// import { DISHES } from "../shared/dishes";
+// import { PROMOTIONS } from "../shared/promotions";
+// import { LEADERS } from "../shared/leaders";
 
 import { baseUrl } from "../shared/baseUrl";
+import Loading from "./LoadingComponent";
 
 class RenderItem extends Component {
   render() {
@@ -43,7 +42,6 @@ class RenderItem extends Component {
     }
   }
 }
-
 // redux
 import { connect } from "react-redux";
 const mapStateToProps = (state) => {
@@ -53,19 +51,23 @@ const mapStateToProps = (state) => {
     leaders: state.leaders,
   };
 };
-
 class Home extends Component {
   constructor(props) {
     super(props);
+    /*this.state = {
+      dishes: DISHES,
+      promotions: PROMOTIONS,
+      leaders: LEADERS
+    };*/
   }
   render() {
     const dish = this.props.dishes.dishes.filter(
       (dish) => dish.featured === true
     )[0];
-    const promo = this.props.promotions.promotions.filter(
+    const promotions = this.props.promotions.promotions.filter(
       (promo) => promo.featured === true
     )[0];
-    const leader = this.props.leaders.leaders.filter(
+    const leaders = this.props.leaders.leaders.filter(
       (leader) => leader.featured === true
     )[0];
     return (
@@ -76,12 +78,12 @@ class Home extends Component {
           errMess={this.props.dishes.errMess}
         />
         <RenderItem
-          item={promo}
+          item={promotions}
           isLoading={this.props.promotions.isLoading}
           errMess={this.props.promotions.errMess}
         />
         <RenderItem
-          item={leader}
+          item={leaders}
           isLoading={this.props.leaders.isLoading}
           errMess={this.props.leaders.errMess}
         />

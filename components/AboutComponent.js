@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Text, FlatList } from "react-native";
-import { Card, ListItem, Avatar } from "react-native-elements";
 import { ScrollView } from "react-native-virtualized-view";
-import Loading from "./LoadingComponent";
-
-//import { LEADERS } from "../shared/leaders";
+import { Card, ListItem, Avatar } from "react-native-elements";
+// import { LEADERS } from '../shared/leaders';
 import { baseUrl } from "../shared/baseUrl";
+import Loading from "./LoadingComponent";
 
 class RenderHistory extends Component {
   render() {
@@ -63,7 +62,6 @@ class RenderLeadership extends Component {
       );
     }
   }
-
   renderLeaderItem(item, index) {
     return (
       <ListItem key={index}>
@@ -78,7 +76,6 @@ class RenderLeadership extends Component {
     );
   }
 }
-
 import { connect } from "react-redux";
 const mapStateToProps = (state) => {
   return {
@@ -90,7 +87,6 @@ class About extends Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
