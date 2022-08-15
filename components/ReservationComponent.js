@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   formLabel: { fontSize: 18, flex: 2 },
   formItem: { flex: 1 },
-  modal: { justifyContent: "center", margin: 20 },
+  modal: { justifyContent: "center", marginTop: 50 },
   modalTitle: {
     fontSize: 24,
     fontWeight: "bold",
