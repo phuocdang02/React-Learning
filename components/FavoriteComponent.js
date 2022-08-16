@@ -79,7 +79,26 @@ class Favorites extends Component {
             width: 100,
             backgroundColor: "red",
           }}
-          onPress={() => this.props.deleteFavorite(item.id)}
+          onPress={() => {
+            Alert.alert(
+              "Delete Favorite?",
+              "Are you sure you wish to delete this favorite dish: " +
+                item.name +
+                "?",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => {
+                    /* nothing */
+                  },
+                },
+                {
+                  text: "OK",
+                  onPress: () => this.props.deleteFavorite(item.id),
+                },
+              ]
+            );
+          }}
         >
           <Text style={{ color: "#FFF" }}>Delete</Text>
         </TouchableOpacity>
