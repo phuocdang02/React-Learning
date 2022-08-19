@@ -13,6 +13,7 @@ import { Picker } from "@react-native-picker/picker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as Animatable from "react-native-animatable";
 import { format } from "date-fns";
+import * as Notifications from 'expo-notifications';
 
 class Reservation extends Component {
   constructor(props) {
@@ -95,7 +96,13 @@ class Reservation extends Component {
         this.state.date.toISOString(),
       [
         { text: "Cancel", onPress: () => this.resetForm() },
-        { text: "OK", onPress: () => this.resetForm() },
+        {
+          text: "OK",
+          onPress: () => {
+            this.presentLocalNotification(this.state.date);
+            this.resetForm();
+          },
+        },
       ],
       { cancelable: false }
     );
@@ -108,6 +115,24 @@ class Reservation extends Component {
       date: new Date(),
       showDatePicker: false,
     });
+  }
+
+  async presentLocalNotification(date) {
+    const { status } = await Notifications.requestPermissionsAsync();
+    if (status === 'granted') {
+      Notifications.setNotificationHandler({
+        handleNotification: async () => ({ shouldShowAlert: true, shouldPlaySound: true, shouldSetBadge: true })
+      });
+      Notifications.scheduleNotificationAsync({
+        content: {
+          title: 'Your Reservation',
+          body: 'Reservation for ' + date + ' requested',
+          sound: true,
+          vibrate: true
+        },
+        trigger: null
+      });
+    }
   }
 }
 export default Reservation;
