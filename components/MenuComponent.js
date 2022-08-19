@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import { FlatList, View } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { Text } from "react-native";
+import * as Animatable from "react-native-animatable";
 // import { DISHES } from "../shared/dishes";
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "./LoadingComponent";
 import Dishdetail from "./DishdetailComponent";
-import * as Animatable from "react-native-animatable";
-
-//redux
 import { connect } from "react-redux";
 const mapStateToProps = (state) => {
   return {
@@ -19,8 +17,8 @@ class Menu extends Component {
   constructor(props) {
     super(props);
     /*this.state = {
-      dishes: DISHES
-    };*/
+        dishes: DISHES
+      };*/
   }
   render() {
     if (this.props.dishes.isLoading) {

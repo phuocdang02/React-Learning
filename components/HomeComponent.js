@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, ScrollView, Text } from "react-native";
 import { Card, Image } from "react-native-elements";
+import * as Animatable from "react-native-animatable";
 
 /* Shared Folder */
 // import { DISHES } from "../shared/dishes";
@@ -9,7 +10,6 @@ import { Card, Image } from "react-native-elements";
 
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "./LoadingComponent";
-import * as Animatable from "react-native-animatable";
 
 class RenderItem extends Component {
   render() {
@@ -80,14 +80,14 @@ class Home extends Component {
             errMess={this.props.dishes.errMess}
           />
         </Animatable.View>
-        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+        <Animatable.View animation="fadeInRight" duration={2000} delay={1000}>
           <RenderItem
             item={promotions}
             isLoading={this.props.promotions.isLoading}
             errMess={this.props.promotions.errMess}
           />
         </Animatable.View>
-        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+        <Animatable.View animation="fadeInUp" duration={2000} delay={1000}>
           <RenderItem
             item={leaders}
             isLoading={this.props.leaders.isLoading}
