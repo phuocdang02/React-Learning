@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { View, Text, Linking } from "react-native";
-import { Icon, Image } from "react-native-elements";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
+
+import { View, Text, Linking } from "react-native";
+import { Icon, Image } from "react-native-elements";
+
 import { connect } from "react-redux";
 import {
   fetchLeaders,
@@ -16,14 +20,90 @@ import {
   fetchComments,
   fetchPromos,
 } from "../redux/ActionCreators";
+
 import { baseUrl } from "../shared/baseUrl";
 import Home from "./HomeComponent";
+import Reservation from "./ReservationComponent";
+import Login from "./LoginComponent";
+import Register from "./RegisterComponent";
+
+//redux
 const mapDispatchToProps = (dispatch) => ({
   fetchLeaders: () => dispatch(fetchLeaders()),
   fetchDishes: () => dispatch(fetchDishes()),
   fetchComments: () => dispatch(fetchComments()),
   fetchPromos: () => dispatch(fetchPromos()),
 });
+
+function TabNavigatorScreen() {
+  const TabNavigator = createBottomTabNavigator();
+  return (
+    <TabNavigator.Navigator initialRouteName="Login">
+      <TabNavigator.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon
+              name="sign-in"
+              type="font-awesome"
+              size={size}
+              color={color}
+            />
+          ),
+          tabBarActiveTintColor: "#7cc",
+        }}
+      />
+      <TabNavigator.Screen
+        name="Register"
+        component={Register}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon
+              name="user-plus"
+              type="font-awesome"
+              size={size}
+              color={color}
+            />
+          ),
+          tabBarActiveTintColor: "#7cc",
+        }}
+      />
+    </TabNavigator.Navigator>
+  );
+}
+
+function LoginNavigatorScreen() {
+  const LoginNavigator = createStackNavigator();
+  return (
+    <LoginNavigator.Navigator
+      initialRouteName="LoginRegister"
+      screenOptions={{
+        headerStyle: { backgroundColor: "#7cc" },
+        headerTintColor: "#fff",
+        headerTitleStyle: { color: "#fff" },
+      }}
+    >
+      <LoginNavigator.Screen
+        name="LoginRegister"
+        component={TabNavigatorScreen}
+        options={({ navigation }) => ({
+          headerTitle: "Login",
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={36}
+              color="#fff"
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        })}
+      />
+    </LoginNavigator.Navigator>
+  );
+}
 function HomeNavigatorScreen() {
   const HomeNavigator = createStackNavigator();
   return (
@@ -53,7 +133,6 @@ function HomeNavigatorScreen() {
     </HomeNavigator.Navigator>
   );
 }
-import Reservation from "./ReservationComponent";
 function ReservationNavigatorScreen() {
   const ReservationNavigator = createStackNavigator();
   return (
@@ -264,6 +343,23 @@ function MainNavigatorScreen() {
       initialRouteName="HomeScreen"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
+      <MainNavigator.Screen
+        name="LoginScreen"
+        component={LoginNavigatorScreen}
+        options={{
+          title: "Login",
+          headerShown: false,
+          drawerIcon: ({ focused, size }) => (
+            <Icon
+              name="sign-in"
+              type="font-awesome"
+              size={size}
+              color={focused ? "#7cc" : "#ccc"}
+            />
+          ),
+          drawerActiveTintColor: "#7cc",
+        }}
+      />
       <MainNavigator.Screen
         name="HomeScreen"
         component={HomeNavigatorScreen}
