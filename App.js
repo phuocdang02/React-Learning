@@ -8,6 +8,11 @@ import { ConfigureStore } from "./redux/ConfigureStore";
 import { PersistGate } from "redux-persist/es/integration/react";
 const { persistor, store } = ConfigureStore();
 
+// firebase
+import { initializeApp } from 'firebase/app';
+const firebaseConfig = { databaseURL: 'https://.firebasedatabase.app/' };
+initializeApp(firebaseConfig);
+
 class App extends Component {
   render() {
     return (
