@@ -13,29 +13,16 @@ import {
 import { View, Text, Linking } from "react-native";
 import { Icon, Image } from "react-native-elements";
 
-import { connect } from "react-redux";
-import {
-  fetchLeaders,
-  fetchDishes,
-  fetchComments,
-  fetchPromos,
-  logoutUser,
-} from "../redux/ActionCreators";
-
 import { baseUrl } from "../shared/baseUrl";
 import Home from "./HomeComponent";
 import Reservation from "./ReservationComponent";
 import Login from "./LoginComponent";
 import Register from "./RegisterComponent";
-
-//redux
-const mapDispatchToProps = (dispatch) => ({
-  fetchLeaders: () => dispatch(fetchLeaders()),
-  fetchDishes: () => dispatch(fetchDishes()),
-  fetchComments: () => dispatch(fetchComments()),
-  fetchPromos: () => dispatch(fetchPromos()),
-  logoutUser: () => dispatch(logoutUser()),
-});
+import About from "./AboutComponent";
+import Favorites from "./FavoriteComponent";
+import Menu from "./MenuComponent";
+import Dishdetail from "./DishdetailComponent";
+import Contact from "./ContactComponent";
 
 function TabNavigatorScreen() {
   const TabNavigator = createBottomTabNavigator();
@@ -165,7 +152,6 @@ function ReservationNavigatorScreen() {
   );
 }
 
-import Favorites from "./FavoriteComponent";
 function FavoritesNavigatorScreen() {
   const FavoritesNavigator = createStackNavigator();
   return (
@@ -201,7 +187,6 @@ function FavoritesNavigatorScreen() {
   );
 }
 
-import About from "./AboutComponent";
 function AboutNavigatorScreen() {
   const AboutNavigator = createStackNavigator();
   return (
@@ -232,8 +217,6 @@ function AboutNavigatorScreen() {
   );
 }
 
-import Menu from "./MenuComponent";
-import Dishdetail from "./DishdetailComponent";
 function MenuNavigatorScreen() {
   const MenuNavigator = createStackNavigator();
   return (
@@ -271,8 +254,6 @@ function MenuNavigatorScreen() {
   );
 }
 
-import Contact from "./ContactComponent";
-import { users } from "../redux/users";
 function ContactNavigatorScreen() {
   const ContactNavigator = createStackNavigator();
   return (
@@ -482,12 +463,27 @@ function MainNavigatorScreen() {
   );
 }
 
+import { connect } from "react-redux";
+import {
+  fetchLeaders,
+  fetchDishes,
+  fetchComments,
+  fetchPromos,
+  logoutUser,
+} from "../redux/ActionCreators";
 // redux
 const mapStateToProps = (state) => {
   return {
     users: state.users,
   };
 };
+const mapDispatchToProps = (dispatch) => ({
+  fetchLeaders: () => dispatch(fetchLeaders()),
+  fetchDishes: () => dispatch(fetchDishes()),
+  fetchComments: () => dispatch(fetchComments()),
+  fetchPromos: () => dispatch(fetchPromos()),
+  logoutUser: () => dispatch(logoutUser()),
+});
 
 class Main extends Component {
   render() {

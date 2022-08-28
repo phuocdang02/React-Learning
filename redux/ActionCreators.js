@@ -133,6 +133,7 @@ export const deleteFavorite = (dishId) => ({
   type: ActionTypes.DELETE_FAVORITE,
   payload: dishId,
 });
+
 // users
 export const loginUser = (userinfo) => ({
   type: ActionTypes.LOGIN_USER,

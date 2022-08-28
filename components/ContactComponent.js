@@ -24,12 +24,14 @@ class Contact extends Component {
         <Card>
           <Card.Title>Contact Information</Card.Title>
           <Card.Divider />
-          <Text style={{ margin: 10 }}>121, Clear Water Bay Road</Text>
-          <Text style={{ margin: 10 }}>Clear Water Bay, Kowloon</Text>
-          <Text style={{ margin: 10 }}>HONG KONG</Text>
-          <Text style={{ margin: 10 }}>Tel: +852 1234 5678</Text>
-          <Text style={{ margin: 10 }}>Fax: +852 8765 4321</Text>
-          <Text style={{ margin: 10 }}>Email:confusion@food.net</Text>
+          <Text style={{ margin: 10 }}>
+            {this.state.number}, {this.state.street}
+          </Text>
+          <Text style={{ margin: 10 }}>{this.state.district}</Text>
+          <Text style={{ margin: 10 }}>{this.state.city}</Text>
+          <Text style={{ margin: 10 }}>Tel: {this.state.phone}</Text>
+          <Text style={{ margin: 10 }}>Fax: {this.state.fax}</Text>
+          <Text style={{ margin: 10 }}>Email: {this.state.email}</Text>
           <Button
             title=" Compose Email"
             buttonStyle={{ backgroundColor: "#7cc" }}
