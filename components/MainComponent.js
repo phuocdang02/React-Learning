@@ -340,7 +340,7 @@ function CustomDrawerContent(props) {
     </DrawerContentScrollView>
   );
 }
-function MainNavigatorScreen() {
+function MainNavigatorScreen(props) {
   const users = props.users;
   const logoutUser = props.logoutUser;
   const MainNavigator = createDrawerNavigator();
